@@ -122,7 +122,7 @@ class SecurityAnalyzer:
                 
                 doc = vex_data.get('document', {})
                 
-                # 提取基本資訊
+                # 取得基本資訊
                 vuln_info = VulnerabilityInfo(
                     cve_id=doc['tracking'].get('id', 'Unknown'),
                     severity=doc.get('aggregate_severity', {}).get('text', 'Unknown'),
@@ -131,7 +131,7 @@ class SecurityAnalyzer:
                     description=''
                 )
                 
-                # 提取描述資訊
+                # 取得描述資訊
                 if 'vulnerabilities' in vex_data and vex_data['vulnerabilities']:
                     vuln = vex_data['vulnerabilities'][0]
                     for note in vuln.get('notes', []):
@@ -160,7 +160,7 @@ class SecurityAnalyzer:
                 print(f"Title: {vuln.title}")
                 print("\nAffected Packages:")
                 for pkg in sorted(affected):
-                    # 获取版本信息
+                    # 版本資訊
                     versions = self.package_versions.get(pkg, [])
                     version_str = ', '.join(versions) if versions else "Unknown version"
                     print(f"- {pkg} (version: {version_str})")
